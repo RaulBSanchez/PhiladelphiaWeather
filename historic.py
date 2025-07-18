@@ -16,7 +16,7 @@ params = {
 	"latitude": 39.9524,
 	"longitude": -75.1636,
 	"start_date": "2015-07-15",
-	"end_date": "2025-07-15",
+	"end_date": "2025-07-16",
 	"daily": ["temperature_2m_max", "temperature_2m_min", "apparent_temperature_max", "apparent_temperature_min", "wind_speed_10m_max", "wind_gusts_10m_max", "wind_direction_10m_dominant", "sunrise", "sunset", "precipitation_sum", "rain_sum", "snowfall_sum", "weather_code", "apparent_temperature_mean", "temperature_2m_mean"],
 	"timezone": "America/New_York",
 	"temperature_unit": "fahrenheit",
