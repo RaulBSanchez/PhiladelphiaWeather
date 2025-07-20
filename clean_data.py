@@ -88,6 +88,8 @@ weather_map_code = {
 }
 
 
+
+# Map the weather codes 
 df['weather_code'] = df['weather_code'].map(weather_map_code)
 
 def compassConvert(degree):
@@ -97,15 +99,33 @@ def compassConvert(degree):
 
 df['wind_direction'] = df['wind_direction_10m_dominant'].apply(compassConvert)
 
-#print(df.dtypes)
 
 
+#Remove the time and only return the date
 df['date'] = pd.to_datetime(df['date']).dt.date
-#df['date'] = pd.to_datetime(df['date'], format= '%Y%m%d')
-df['date'] = pd.to_datetime(df['date'])
+
+
+
+#Convert the sunrise/sunset times in epoch time to readable data
 df['sunriseTime'] = pd.to_datetime(df['sunrise'], unit='s')
 df['sunriseTime'] = df['sunriseTime'] - pd.Timedelta(hours=4)
 df['sunsetTime'] = pd.to_datetime(df['sunset'], unit='s')
 df['sunsetTime'] = df['sunsetTime'] - pd.Timedelta(hours=4)
 print(df.dtypes)
 
+#Place all the months into Seasonal Categories
+def season(date):
+    month = date.month
+    if month in [12, 1, 2]:
+        return 'Winter'
+    elif month in [3,4,5]:
+        return 'Spring'
+    elif month in [6,7,8]:
+        return 'Summer'
+    else:
+        return 'Fall'
+    
+df['season'] = df['date'].apply(season)
+
+#Export the clean data for analysis
+df.to_csv('CleanData.csv', index=False) 
