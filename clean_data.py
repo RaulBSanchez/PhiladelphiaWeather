@@ -103,7 +103,7 @@ df['wind_direction'] = df['wind_direction_10m_dominant'].apply(compassConvert)
 
 #Remove the time and only return the date
 df['date'] = pd.to_datetime(df['date']).dt.date
-
+df["date"] = pd.to_datetime(df["date"])
 
 
 #Convert the sunrise/sunset times in epoch time to readable data
@@ -129,3 +129,5 @@ df['season'] = df['date'].apply(season)
 
 #Export the clean data for analysis
 df.to_csv('CleanData.csv', index=False) 
+
+df
